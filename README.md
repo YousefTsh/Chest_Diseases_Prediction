@@ -19,6 +19,7 @@ And integrating these Modules with A User Frindly WebApp with required Dashbords
 * Pandas
 * matplotlib
 * HTML,CSS
+* Tableau
 
 ## AI Modules NoteBooks
 Links to NootBooks where the AI Modules Developed and Trained in
