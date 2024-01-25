@@ -1,0 +1,22 @@
+.tableauPlaceholder{
+    position: absolute;
+    top: 20px;
+    left: 95px;
+    width: 200px;
+    height: 900px;
+    padding: 10px 10px;
+
+}
+.pages{
+    position: absolute;
+    top: 1100px;
+    left: 650px;
+    width: 200px;
+    height: 200px;
+    padding: 10px 10px;
+}
+.pages li{
+    display: inline-block;
+    margin: 10px 10px;
+
+}

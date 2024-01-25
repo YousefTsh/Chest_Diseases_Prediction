@@ -1,0 +1,77 @@
+.container{
+    position: absolute;
+    top: 20px;
+    left: 345px;
+    width: 750px;
+    height: 600px;
+    padding: 10px 10px;
+    background: white;
+}
+.container .logo {
+    width: 9%;
+    height: auto;
+    margin: -90px -320px;
+    position: absolute;
+    top: 85px;
+    left: 412px;
+}
+.container h3{
+    width: 100%;
+    margin: 20px -70px;
+    font-size: 2.5em;
+    text-align: right;
+    color: black;
+    font-family: Rockwell;
+}
+#t{
+    width: 100%;
+    margin: 20px 5px;
+    text-align: left;
+    font-size: 18px;
+    font-weight: bold;
+    color: black;
+    font-family: Time New Roman;
+}
+.container img{
+    width: 200px;
+    height:200px;
+    margin: -90px -320px;
+    position: absolute;
+    top: 250px;
+    left: 590px;
+}
+.result{
+    position: absolute;
+    top: 450px;
+}
+.print input[type="button"]{
+    display: none;}
+
+.print_label{
+    position: absolute;
+    top: 570px;
+    left: 330px;
+}
+.print_label label{
+    color: white;
+    height: 60px;
+    width: 250px;
+    background-color: #0D7FED;
+    font-size: 18px;
+    padding: 10px 10px;
+    justify-content: center;
+    align-items: center;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: .5s;
+}
+
+.print_label label:hover{
+    background-color: #2691d9;
+    transition: .5s;
+}
+.print_label label i{
+    margin-right: 16px;
+}

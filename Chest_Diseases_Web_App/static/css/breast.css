@@ -1,0 +1,131 @@
+.container{
+    position: absolute;
+    top: 79px;
+    left: 309px;
+    background: #fff;
+    width: 900px;
+    border-radius: 5px;
+    animation: 1s ease 0s 1 scaleB;
+}
+@keyframes scaleB{
+    0% {
+          transform: scale(60%);
+        }
+        100% {
+          transform: scale(100%);
+        }
+}
+.container header{
+    font-size: 22px;
+    font-weight: 600;
+    text-align: center;
+    padding: 20px 30px;
+    border-bottom: 1px solid #bfbfbf;
+}
+.container header i{
+    margin-right: 20px;
+}
+.container i{
+    color: pink;
+}
+
+.container form{
+    margin: 35px 30px;
+}
+form .fileds_cols1{
+    position: relative;
+}
+form .fileds_cols2{
+    position: absolute;
+    top:102px;
+    left: 60%;
+    width: 400px;
+
+}
+.fileds_cols1 .filed,
+.fileds_cols2 .filed{
+    margin-bottom: 25px;
+}
+form .fileds_cols1 .filed input[type="text"]{
+    height: 18px;
+    position: absolute;
+    left: 120px;
+    border-radius: 5px;
+    background: none;
+    border: 1px solid;
+    outline: none;
+    transition: .5s;
+}
+form .fileds_cols1 .filed input[type="text"]::placeholder{
+    color: #bfbfbf;
+}
+form  .filed input[type="radio"]{
+    width: 35px;
+    transform: scale(1.3);
+    transition: .3s;
+}
+form  .filed label {
+   margin-right: 10px;
+}
+form  .filed .raido_class{
+    display: inline;
+    position: absolute;
+    left: 180px;
+}
+form .filed .custom_select{
+    display: inline;
+}
+form .filed .custom_select select{
+    width: 150px;
+    height: 20px;
+    position: absolute;
+    left: 120px;
+    border-radius: 5px;
+    border: 1px solid #d5dbd9;
+    outline: none;
+    transition: .3s;
+}
+
+form .fileds_cols1 .filed input[type="text"]:focus,
+form .filed .custom_select select:focus{
+    border: 1px solid #ff72ae;;
+}
+form  .filed input[type="radio"]:checked + label{
+    font-weight: bold;
+    color:#ff72ae;
+
+}
+.btns{
+    position: relative;
+    margin-left: 20%;
+    
+}
+.btns button{
+    font-size: 18px;
+    color: #fff;
+    width: 200px;
+    left: 50%;
+    height: 40px;
+    border: 1px solid;
+    font-weight: 700;
+    outline: none;
+    transition: .5s;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    background: #ff72ae;
+    margin-top: 20px;
+    margin-right: 50px;
+    margin-bottom: 10px;
+    transition: .5s;
+    
+}
+.btns button:hover{
+    border-color: #2691d9;
+    background: #ffa5cb;
+    transition: .5s;
+}
+.error_message{
+    text-align: center;
+    color: red;
+}

@@ -1,0 +1,77 @@
+.box{
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    width: 750px;
+    height: 500px;
+    padding: 80px 40px;
+    background:linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(../images/med.jpg) no-repeat;
+    background-size: cover;
+    
+    
+        
+}
+.box h1,h2{
+    color: #fff;
+    text-align: center;
+}
+.box h1{
+    font-size: 40px;
+    line-height: 50px;
+}
+.box h2{
+    font-size: 30px;
+}
+
+form{
+    margin-top: 30px;
+}
+.inputs{
+    width: 600px;
+    background: transparent;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #959595;
+    color: #fff;
+    font-size: 18px;
+    margin-bottom: 16px;
+}
+input{
+    height: 45px;
+}
+.send{
+    background-color: #ff5722;
+    border-color: transparent;
+    border-radius: 25px;
+    color: #fff;
+    font-size: 20px;
+    letter-spacing: 2px;
+    height: 50px;
+    margin-top: 30px;
+    margin-left: 110px;
+    transition: 0.4s ease;
+    width: 500px;
+}
+.send:hover{
+    background-color: #f44227;
+    cursor: pointer;
+}
+::placeholder{
+    color: rgba(255,255,255,0.7);
+}
+.box ul li{
+    display: inline-block;
+    font-size: 20px;
+    color: #fff;
+    margin: 0 60px;
+    display: inline-block;
+    opacity: 0.95;
+}
+.box ul li i{
+    margin-right: 16px;
+}

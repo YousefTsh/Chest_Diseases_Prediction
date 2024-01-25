@@ -1,0 +1,306 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="Chest Diseases Pridection ">
+        <title> Breast Cancer</title>
+        <link rel="icon" href="{% static 'images/icon.png' %}">
+        <link rel="stylesheet" href="{% static 'css/sidbar.css' %}">
+        <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+        <link rel="stylesheet" href="{% static 'css/breast.css' %}">
+        <script src="https://kit.fontawesome.com/a6ae8921ae.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <input type="checkbox" id="check">
+            <label for="check">
+                <i class="fas fa-bars" id="btn"></i>
+                <i class="fas fa-times" id="cancel"></i>
+            </label>
+            <div class="sidebar">
+                <header>Menu</header>
+                <ul>
+                    {% if role %}
+                        <h5 class="welcome">Welcome Dr.{{doctor_name}}</h5>
+                        <li><a href="{% url 'index' %}"><i class="fas fa-home"></i>Home</a></li>
+                        <li><a href="{% url 'chest' %}"><i class="fas fa-x-ray"></i>Chest X-ray</a></li>
+                        <li><a href="{% url 'ct' %}"><i class="fas fa-x-ray"></i>CT Scans</a></li>
+                        <li><a href="{% url 'breast' %}"><i class="fas fa-ribbon"></i>Breast Cancer</a></li>
+                        <li><a href="{% url 'about' %}"><i class="fas fa-info-circle"></i>About Us</a></li>
+                        <li><a href="{% url 'contact' %}"><i class="far fa-envelope"></i>Contact</a></li>
+                        {% if role == 'admin' %}
+                            <li><a href="{% url 'dashboard' 1 %}"><i class="fas fa-chart-line"></i>Dashboard</a></li>
+                        {% endif %}
+                        <li><a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i>SignOut</a></li>
+                    {% else %}
+                        <li><a href="{% url 'index' %}"><i class="fas fa-home"></i>Home</a></li>
+                        <li><a href="{% url 'login' %}"><i class="fas fa-sign-in-alt"></i>SignIn</a></li>
+                        <li><a href="{% url 'chest' %}"><i class="fas fa-x-ray"></i>Chest X-ray</a></li>
+                        <li><a href="{% url 'ct' %}"><i class="fas fa-x-ray"></i>CT Scans</a></li>
+                        <li><a href="{% url 'breast' %}"><i class="fas fa-ribbon"></i>Breast Cancer</a></li>
+                        <li><a href="{% url 'about' %}"><i class="fas fa-info-circle"></i>About Us</a></li>
+                        <li><a href="{% url 'contact' %}"><i class="far fa-envelope"></i>Contact</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+<!--        image section(background)-->
+        <section id="home_sec"></section>
+<!--        content section-->
+        <section>
+            <div class="container">
+                <header><i class="fas fa-ribbon"></i>Breast Cancer Data</header>
+                <h4 class="error_message">{{error}}</h4>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <div class="fileds_cols1">
+                        <div class="filed">
+                            <label class="er_label">ER Positive</label>
+                            <input type="radio" name="er_positive" id="er_p" value="1">
+                            <label for="er_p">Positive</label>
+                            <input type="radio" name="er_positive" id="er_n" value="0">
+                            <label for="er_n">Negative</label>
+                        </div>
+                        
+                        <div class="filed">
+                            <label class="pr_label">PR Positive</label>
+                            <input type="radio" name="pr_positive" id="pr_p" value="1">
+                            <label for="pr_p">Positive</label>
+                            <input type="radio" name="pr_positive" id="pr_n" value="0">
+                            <label for="pr_n">Negative</label>
+                        </div>
+                        
+                        <div class="filed">
+                            <label>Tumor Size</label>
+                            <input type="text" placeholder="LD(cm)" name="ld">
+                        </div>
+                        
+                        <div class="filed">
+                            <label>Nodes Number</label>
+                            <input type="text" placeholder="Number" name="node_no">
+                        </div>
+                        
+                        <div class="filed">
+                            <label>Node-Coded</label>
+                            <div class="custom_select">
+                                <select name="node_coded">
+                                    <option value="">Select</option>
+                                    <option value="1">Positive</option>
+                                    <option value="0">Negative</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                         <div class="filed">
+                            <label>Breast Quad</label>
+                            <div class="custom_select">
+                                <select name="breast_quad">
+                                    <option value="">Select</option>
+                                    <option value="2">Left Up</option>
+                                    <option value="1">Left Low</option>
+                                    <option value="4">Right Up</option>
+                                    <option value="3">Right Low</option>
+                                    <option value="0">Central</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="filed">
+                            <label>Tumor Stage</label>
+                            <div class="custom_select">
+                                <select name="tumor_stage">
+                                    <option value="">Select</option>
+                                    <option value="0">T1</option>
+                                    <option value="1">T2</option>
+                                    <option value="2">T3</option>
+                                    <option value="3">T4</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="filed">
+                            <label>Node Type</label>
+                            <div class="custom_select">
+                                <select name="node_type">
+                                    <option value="">Select</option>
+                                    <option value="0">N0</option>
+                                    <option value="1">N1</option>
+                                    <option value="2">N2</option>
+                                    <option value="3">N3</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="filed">
+                            <label>Metastasis</label>
+                            <div class="custom_select">
+                                <select name="meta">
+                                    <option value="">Select</option>
+                                    <option value="0">M0</option>
+                                    <option value="1">M1</option>
+                                </select>
+                            </div>
+                        </div>  
+                    </div>
+                    <div class="fileds_cols2">
+                        <div class="filed">
+                            <label class="risk_infiction_label">Risk for infection</label>
+                            <div class="raido_class">
+                                <input type="radio" name="risk_for_infection" id="infection_yes" value="1">
+                                <label for="infection_yes">Yes</label>
+                                <input type="radio" name="risk_for_infection" id="infection_no" value="0">
+                                <label for="infection_no">No</label>
+                            </div>
+                        </div>
+                        
+                        <div class="filed">
+                            <label class="cardiec_risk_label">Cardiec Disease Risk</label>
+                            <div class="raido_class">
+                                <input type="radio" name="cardiec_disease_risk" id="cardiec_yes" value="1">
+                                <label for="cardiec_yes">Yes</label>
+                                <input type="radio" name="cardiec_disease_risk" id="cardiec_no" value="0">
+                                <label for="cardiec_no">No</label>
+                            </div>
+                            
+                        </div>
+                        
+                        <div class="filed">
+                            <label class="surgery_label">Pervious surgery</label>
+                            <div class="raido_class">
+                                <input type="radio" name="pervious_surgery" id="surgery_yes" value="1">
+                                <label for="surgery_yes">Yes</label>
+                                <input type="radio" name="pervious_surgery" id="surgery_no" value="0">
+                                <label for="surgery_no">No</label>
+                            </div>
+                            
+                        </div>
+                        
+                        <div class="filed">
+                            <label class="chest_label">Chest Problems</label>
+                            <div class="raido_class">
+                                <input type="radio" name="chest_problems" id="chest_yes" value="1">
+                                <label for="chest_yes">Yes</label>
+                                <input type="radio" name="chest_problems" id="chest_no" value="0">
+                                <label for="chest_no">No</label>
+                            </div>
+                            
+                        </div>
+                        
+                        
+                        <div class="filed">
+                            <label class="thromboembolism_label">Thromboembolism Risk</label>
+                            <div class="raido_class">
+                                <input type="radio" name="thromboembolism_risk" id="thromboembolism_yes" value="1">
+                                <label for="thromboembolism_yes">Yes</label>
+                                <input type="radio" name="thromboembolism_risk" id="thromboembolism_no" value="0">
+                                <label for="thromboembolism_no">No</label>
+                            </div>
+                            
+                        </div>
+                        
+                        <div class="filed">
+                            <label class="sleep_apnea_label">Sleep Apnea</label>
+                            <div class="raido_class">
+                                <input type="radio" name="sleep_apnea" id="apnea_yes" value="1">
+                                <label for="apnea_yes">Yes</label>
+                                <input type="radio" name="sleep_apnea" id="apnea_no" value="0">
+                                <label for="apnea_no">No</label>
+                            </div>
+                            
+                        </div>
+                        
+                        <div class="filed">
+                            <label class="alcohol_label">Alcohol Consumption</label>
+                            <div class="raido_class">
+                                <input type="radio" name="alcohol" id="alcohol_yes" value="1">
+                                <label for="alcohol_yes">Yes</label>
+                                <input type="radio" name="alcohol" id="alcohol_no" value="0">
+                                <label for="alcohol_no">No</label>
+                            </div>
+                            
+                        </div>
+                        
+                        <div class="filed">
+                            <label class="allergeis_label">Allergeis</label>
+                            <div class="raido_class">
+                                <input type="radio" name="allergeis" id="allergeis_yes" value="1">
+                                <label for="allergeis_yes">Yes</label>
+                                <input type="radio" name="allergeis" id="allergeis_no" value="0">
+                                <label for="allergeis_no">No</label>
+                            </div>
+                          
+                        </div>
+                        
+                        
+                        <div class="filed">
+                            <label class="smoking_label">Smoking</label>
+                            <div class="raido_class">
+                                <input type="radio" name="smoking" id="smoking_yes" value="1">
+                                <label for="smoking_yes">Yes</label>
+                                <input type="radio" name="smoking" id="smoking_no" value="0">
+                                <label for="smoking_no">No</label>
+                            </div>
+                            
+                        </div>
+                        
+                        
+                    </div>
+                    <div class="btns">
+                        <button type="reset">Clear</button>
+                        <button type="submit">Predict</button>
+                        
+                    </div>
+                </form>
+            </div>
+             
+        </section>
+    </body>
+<!--    footer section-->
+    <section>
+        <footer>
+        <div class="waves">
+            <div class="wave" id="wave1"></div>
+            <div class="wave" id="wave2"></div>
+            <div class="wave" id="wave3"></div>
+            <div class="wave" id="wave4"></div>
+        </div>
+        <ul class="social_icon">
+            <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+            <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+        </ul>
+        <ul class="foot_menu">
+            {% if role %}
+                <li><a href="{% url 'index' %}">Home</a></li>
+                <li><a href="{% url 'chest' %}">Chest X-ray</a></li>
+                <li><a href="{% url 'breast' %}">Breast Cancer</a></li>
+                {% if role == 'admin' %}
+                    <li><a href="{% url 'dashboard' 1 %}">Dashboard</a></li>
+                {% endif %}
+                <li><a href="{% url 'about' %}">About US</a></li>
+                <li><a href="{% url 'contact' %}">Contact</a></li>
+            {% else %}
+                <li><a href="{% url 'index' %}">Home</a></li>
+                <li><a href="{% url 'login' %}">SignIn</a></li>
+                <li><a href="{% url 'chest' %}">Chest X-ray</a></li>
+                <li><a href="{% url 'breast' %}">Breast Cancer</a></li>
+                <li><a href="{% url 'about' %}">About US</a></li>
+                <li><a href="{% url 'contact' %}">Contact</a></li>
+            {% endif %}
+        </ul>
+        <p>&copy; Chest Diseases Team| All Right Reserved</p>
+    </footer>
+
+    </section>
+    
+
+
+
+
+
+
+
+
+
+</html>

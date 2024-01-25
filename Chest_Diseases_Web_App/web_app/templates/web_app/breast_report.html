@@ -1,0 +1,141 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="Chest Diseases Pridection ">
+        <title> Report</title>
+        <link rel="icon" href="{% static 'images/icon.png' %}">
+        <link rel="stylesheet" href="{% static 'css/sidbar.css' %}">
+        <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+        <link rel="stylesheet" href="{% static 'css/breast_report.css' %}">
+        <script src="https://kit.fontawesome.com/a6ae8921ae.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <input type="checkbox" id="check">
+            <label for="check">
+                <i class="fas fa-bars" id="btn"></i>
+                <i class="fas fa-times" id="cancel"></i>
+            </label>
+            <div class="sidebar">
+                <header>Menu</header>
+                <ul>
+                    {% if role %}
+                        <h5 class="welcome">Welcome Dr.{{doctor_name}}</h5>
+                        <li><a href="{% url 'index' %}"><i class="fas fa-home"></i>Home</a></li>
+                        <li><a href="{% url 'chest' %}"><i class="fas fa-x-ray"></i>Chest X-ray</a></li>
+                        <li><a href="{% url 'ct' %}"><i class="fas fa-x-ray"></i>CT Scans</a></li>
+                        <li><a href="{% url 'breast' %}"><i class="fas fa-ribbon"></i>Breast Cancer</a></li>
+                        <li><a href="{% url 'about' %}"><i class="fas fa-info-circle"></i>About Us</a></li>
+                        <li><a href="{% url 'contact' %}"><i class="far fa-envelope"></i>Contact</a></li>
+                        {% if role == 'admin' %}
+                            <li><a href="{% url 'dashboard' 1 %}"><i class="fas fa-chart-line"></i>Dashboard</a></li>
+                        {% endif %}
+                        <li><a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i>SignOut</a></li>
+                    {% else %}
+                        <li><a href="{% url 'index' %}"><i class="fas fa-home"></i>Home</a></li>
+                        <li><a href="{% url 'login' %}"><i class="fas fa-sign-in-alt"></i>SignIn</a></li>
+                        <li><a href="{% url 'chest' %}"><i class="fas fa-x-ray"></i>Chest X-ray</a></li>
+                        <li><a href="{% url 'ct' %}"><i class="fas fa-x-ray"></i>CT Scans</a></li>
+                        <li><a href="{% url 'breast' %}"><i class="fas fa-ribbon"></i>Breast Cancer</a></li>
+                        <li><a href="{% url 'about' %}"><i class="fas fa-info-circle"></i>About Us</a></li>
+                        <li><a href="{% url 'contact' %}"><i class="far fa-envelope"></i>Contact</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+<!--        image section(background)-->
+        <section id="home_sec"></section>
+<!--        content section-->
+        <section>
+             <div class="container">
+                 <img src="{% static 'images/icon.png' %}" alt="Logo">
+                 <h3>Medical Status Report</h3>
+                 <hr>
+                 <h4 id="t">This report is submitted to the patient based on patient tests</h4>
+
+                 <h4 id="test">Patient Tests</h4>
+                 <div class="tests">
+                     <br>
+                     <p><span>ER_positive:</span> {{er_positive}}&#8195;&#8195;&#8195;&#8195;&#8195;<span>PR_positive:</span> {{pr_positive}}
+                         &#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;<span>Tumor Size:</span> {{ld}}
+                     </p>
+                     <br>
+                     <p><span>Node_number:</span> {{node_no}}&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;<span>Node Coded:</span> {{node_coded}}
+                         &#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&nbsp;&nbsp;<span>Breast Quad:</span> {{breast_quad}}
+                     </p>
+                     <br>
+                     <p><span>Tumor Stage:</span> {{tumor_stage}}&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;<span>Node Type:</span> {{node_type}}
+                     &#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;<span>Metastasis:</span> {{meta}}
+                     </p>
+                     <br><hr><br>
+                     <p><span>Risk for infection:</span> {{infiction_risk}}&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;<span>Cardiac Disease Risk:</span> {{cardiec_risk}}
+                         &#8195;&#8195;&#8195;&#8195;&#8195;&#8195;<span>Pervious surgery:</span> {{surgery_risk}}
+                     </p>
+                     <br>
+                     <p><span>Chest Problems:</span> {{chest_risk}}&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;<span>Thromboembolism:</span> {{thromboembolism_risk}}
+                         &#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;<span>Sleep Apnea:</span> {{sleep_apnea}}
+                     </p>
+                     <br>
+                     <p><span>Alcohol:</span> {{alcohol}}&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8194;<span>Allergeis:</span> {{allergeis}}
+                     &#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;<span>Smoker:</span> {{smoker}}
+                     </p>
+                 
+                 
+                 </div>
+                 <h4 id="test">Diagnosis</h4>
+                 <div class="diag">
+                     <br>
+                     <p>Predicted Stage: <span>{{stage}}: {{ajjc_coff}}%</span></p>
+                     <br><br>
+                     <p>Best Possible Treatments: <span>HERMONAL: {{hermonal}}% &nbsp;&nbsp;CHEMO: {{chemo}}% &nbsp;&nbsp;SURGERY: {{surgery}}%</span></p>
+                 </div>
+
+                 <div class="print_label">
+                     <a class="print" title="print" alt="print" onclick="window.print();" target="_blank" style="cursor:pointer;"><input type="button" name="print" value="Print" id="print"></a>
+                     <label for="print"><i class="fas fa-print"></i>Print</label>
+                 </div>
+            
+            </div>
+        </section>
+    </body>
+<!--    footer section-->
+    <section>
+        <footer>
+        <div class="waves">
+            <div class="wave" id="wave1"></div>
+            <div class="wave" id="wave2"></div>
+            <div class="wave" id="wave3"></div>
+            <div class="wave" id="wave4"></div>
+        </div>
+        <ul class="social_icon">
+            <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+            <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+        </ul>
+        <ul class="foot_menu">
+            {% if role %}
+                <li><a href="{% url 'index' %}">Home</a></li>
+                <li><a href="{% url 'chest' %}">Chest X-ray</a></li>
+                <li><a href="{% url 'breast' %}">Breast Cancer</a></li>
+                {% if role == 'admin' %}
+                    <li><a href="{% url 'dashboard' 1 %}">Dashboard</a></li>
+                {% endif %}
+                <li><a href="{% url 'about' %}">About US</a></li>
+                <li><a href="{% url 'contact' %}">Contact</a></li>
+            {% else %}
+                <li><a href="{% url 'index' %}">Home</a></li>
+                <li><a href="{% url 'login' %}">SignIn</a></li>
+                <li><a href="{% url 'chest' %}">Chest X-ray</a></li>
+                <li><a href="{% url 'breast' %}">Breast Cancer</a></li>
+                <li><a href="{% url 'about' %}">About US</a></li>
+                <li><a href="{% url 'contact' %}">Contact</a></li>
+            {% endif %}
+        </ul>
+        <p>&copy; Chest Diseases Team| All Right Reserved</p>
+    </footer>
+
+    </section>
+    
+</html>
