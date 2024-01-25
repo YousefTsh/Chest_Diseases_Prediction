@@ -1,2 +1,2 @@
 *.html linguist-detectable=false
-*.django linguist-language=true
+*.django linguist-detectable=true
